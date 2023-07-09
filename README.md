@@ -20,8 +20,8 @@ options for accessing the environment:
 
 Lab computers are the simplest option - and don't require two-factor
 authentication (2FA). Go to any CAEN lab on North campus and open a
-computer. (You can find CAEN computers at
-[this link](https://its.umich.edu/computing/computers-software/campus-computing-sites/computer-labs-map)
+computer. (You can find CAEN computers at [this link
+](https://its.umich.edu/computing/computers-software/campus-computing-sites/computer-labs-map)
 by selecting CAEN Workstations on the left)
 
 - If your login screen is for Linux, you're done!  
@@ -61,11 +61,10 @@ through SSH.
 
 #### [Using Visual Studio Code over SSH](https://code.visualstudio.com/docs/remote/ssh#_installation)
 
-Many of you are already programming in VS Code, and it offers a great
-way to access projects in CAEN Linux. You can use the Remote-SSH
-extension to access CAEN right within VS Code. If you follow the [linked
-tutorial
-above](https://code.visualstudio.com/docs/remote/ssh#_installation),
+VS Code is a common editor and offers a great way to access projects
+in 470. You can use the Remote-SSH extension to access CAEN right within
+VS Code. If you follow the [linked tutorial above
+](https://code.visualstudio.com/docs/remote/ssh#_installation),
 CAEN is already ready for ssh with the hostname
 `login-course.caen.umich.edu` and your username will be your uniqname,
 so connect to the remote: `YOUR_UNIQNAME@login-course.caen.umich.edu`.
