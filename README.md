@@ -3,28 +3,29 @@
 This readme will be included in the first few labs/projects, and is a
 beginner's guide and quick reference for getting started in EECS 470.
 
-It starts with accessing the CAEN Linux environment, then goes over
-using makefiles to build and run the Verilog assignments, then ends with
-some Verilog coding guidelines.
-
-------------------------------------------------------------------------
+It starts with a guide to accessing the CAEN Linux environment,
+gives a quick refresher on using the terminal and shell, introduces
+GitHub and autograder usage in EECS 470, and ends by introducing our
+build tools and the EECS 470 standard Makefile.
 
 ## Accessing the CAEN Linux Environment
 
-CAEN's Linux environment is our workspace for Verilog in 470. It gives
-us access to the Synopsys build tools and the Verdi debugger and is the
-only location we can use these tools from. Luckily, there are many
-options for accessing the environment:
+[CAEN's Linux environment](https://caen.engin.umich.edu/software/clse/)
+is our workspace for verilog programming in 470. It gives us access to
+the Synopsys build tools and the Verdi debugger and is the only
+location we can use these tools from. Luckily, there are many options
+for accessing the environment:
 
 #### [Lab computers!](https://caen.engin.umich.edu/software/clse/)
 
-Lab computers are the simplest option - and don't require two-factor
-authentication (2FA). Go to any CAEN lab on North campus and open a
-computer. (You can find CAEN computers at [this link
-](https://its.umich.edu/computing/computers-software/campus-computing-sites/computer-labs-map)
-by selecting CAEN Workstations on the left)
+Lab computers are the simplest way to access CAEN Linux - and they
+don't require two-factor authentication (2FA).
 
-- If your login screen is for Linux, you're done!  
+Go to any CAEN lab (try searching at [this link](https://its.umich.edu/computing/computers-software/campus-computing-sites/computer-labs-map)
+by checking "CAEN Workstations") and open a computer:
+
+- If your login screen is for Linux, you're done!
+  
   Use your uniqname and password to log in and access the Linux desktop,
   then open a terminal with Ctrl+T or by right-clicking the desktop
   and selecting "Open Terminal"
@@ -47,30 +48,29 @@ by selecting CAEN Workstations on the left)
     It will open a small window asking for your log in. Enter it, then
     log in again to access the Linux desktop!
 
-#### [Remote login](https://caen.engin.umich.edu/connect/linux-login-service/)
+#### [Remote login!](https://caen.engin.umich.edu/connect/linux-login-service/)
 
 You can still log into the CAEN Linux environment if you're not on
-campus, however you will need to use two-factor authentication with duo
+campus, however you will need to use two-factor authentication with Duo
 every single time you access, which gets annoying. These tutorials will
-show you how to access either the desktop through VNC or the command-line
+show you how to access either the desktop through VNC or the terminal
 through SSH.
 
-- [To a Linux desktop via VNC](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=4999)
-- [To a command-line via SSH](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=5002)
-  - And don't forget to setup an ssh config file (see below)
+- [Log in to a desktop via VNC](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=4999)
+- [Log in to a terminal via SSH](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=5002)
+  - And don't forget to set up an ssh config file (see below)
 
-#### [Using Visual Studio Code over SSH](https://code.visualstudio.com/docs/remote/ssh#_installation)
+#### [Visual Studio Code!](https://code.visualstudio.com/docs/remote/ssh#_installation)
 
 VS Code is a common editor and offers a great way to access projects
-in 470. You can use the Remote-SSH extension to access CAEN right within
-VS Code. If you follow the [linked tutorial above
-](https://code.visualstudio.com/docs/remote/ssh#_installation),
-CAEN is already ready for ssh with the hostname
+in 470. You can use the Remote-SSH extension to access CAEN over SSH
+from a VS Code instance running on your local machine. If you follow the
+[linked tutorial](https://code.visualstudio.com/docs/remote/ssh#_installation)
+above, CAEN is already ready for ssh with the hostname
 `login-course.caen.umich.edu` and your username will be your uniqname,
 so connect to the remote: `YOUR_UNIQNAME@login-course.caen.umich.edu`.
-Unfortunately this too requires two-factor authentication on every
-login, but you can set up ControlPersist in your ssh config (see below)
-to speed up re-connecting.
+Unfortunately this too requires 2FA on every login, but you can set
+ControlPersist in your ssh config (see below) to speed up reconnecting.
 
 ### Configuring SSH
 
@@ -94,8 +94,6 @@ Host caen login-course.engin.umich.edu
     ForwardX11 yes
 ```
 
-------------------------------------------------------------------------
-
 ## Using the Terminal and Shell
 
 Once you can access the CAEN Linux environemnt, you can open a
@@ -105,36 +103,32 @@ Ctrl+T or right-clicking the desktop and selecting "Open Terminal"
 We assume you have basic terminal and shell knowledge already, but very
 quickly, here's what to remember:
 - Each line is a command with space separated arguments, use quotes for
-  arguments that contain spaces  
+  arguments that contain spaces:  
   `grep EECS 470 Makefile` vs `grep "EECS 470" Makefile`
 - Press the up arrow to reuse previous commands
 - Press tab to auto-complete typed filenames (`grep 470 Makef<TAB>`)
-- Use `pwd` to print your working folder/directory, `cd dir` to change
-  your directory, `mkdir` to make new directories, and `touch` to make
-  new files
-- Output files raw with `cat`, view them with `less`:
+- Use `pwd` to print your working folder/directory, `cd new_dir` to
+  change your directory, `mkdir new_dir` to make new directories, and
+  `touch new_file`to make new files
+- Output files raw with `cat`, view them with `less`:  
   `cat README.md` vs `less README.md`
 - Redirect command output to files with `>`:  
   `echo EECS 470 rules! > file.txt`; `cat file.txt`
 - Pipe the output of one command as the input to another with `|`:  
   `echo "EECS 370 was a lot of work" | sed -e s/3/4/ -e s/wa/i/`
 - Press Ctrl+C to Cancel a running command  
-  Press Ctrl+\ to force quit a running command if Ctrl+C doesn't work
+  Press Ctrl+\ to force Quit a running command if Ctrl+C doesn't work
 - Finally, read manuals on any command with `man command`, and get quick
   help with `command --help`
 
-The specific build tool commands used in 470 (Makefile usage, running
+The specific build tools used in 470 (Makefile usage, running
 testbenches) are gone over in detail below.
-
-------------------------------------------------------------------------
 
 ## GitHub Guide
 
 TODO
 
 Once you have shell access, clone your repos and get started!
-
-------------------------------------------------------------------------
 
 ## Build Tools in EECS 470
 
@@ -173,31 +167,34 @@ violations. When we're satisfied with the synthesis, we can compile the
 synthesized module with the original testbench to produce a new
 executable that we can debug again until it passes.
 
-#### Using the EECS 470 standard Makefile
+## Using the EECS 470 standard Makefile
 
-To manage this workflow, we use the *GNU Make* utility as a build
-automation tool. We specify targets with dependencies and set variables
-in the special file `Makefile`. At the shell, we run `make my_target` to
-compile or run a target and all of its dependencies. Make also only
-rebuilds targets or dependencies if their source files are newer than
-the previous build.
+To manage this workflow, we use *GNU Make* as a build automation tool.
+We specify targets with dependencies and set variables in the special
+file "`Makefile`". At the shell, we run `make my_target` to compile or
+run a target and all of its dependencies. Make also only rebuilds
+targets or dependencies if their source files are newer than the
+previous build.
 
 From the workflow above, we name our normal simulation executable
 `simv`, and our synthesis executable `syn_simv`. To build these, we
 need to specify our source and output files in these Make variables:
-- `TESTBENCH` `= and8_test.sv` Our Verilog testbench for a module
+- `TESTBENCH` `= and8_test.sv` Our verilog testbench for a module
   (`and8` in this case)
-- `SOURCES ` `= and8.sv and4.sv` The source files for the modules in
+- `SOURCES` `= and8.sv and4.sv` The source files for the modules in
   the testbench
-- `SYNTH_FILES` `= and8.vg` The file we'll use when compiling for
+- `SYNTH_FILES` `= and8.vg` The file(s) we'll use when compiling for
   synthesis
 
-We won't go over the specific build commands themselves in detail, but
-our verilog compiler is `vcs`, which we run with many many arguments.
-And our synthesizer is `dc_shell`, which we run with a synthesis script:
+We won't go over the specific build commands in detail, but our verilog
+compiler is `vcs`, which we run with many many arguments and our
+synthesizer is `dc_shell`, which we run with a synthesis script:
 `470synth.tcl`. The script reads environment variables for source files
 and other configuration and defines the constraints that set up our
-timing requirements.
+timing requirements. For simulation we compile `SOURCES` and
+`TESTBENCH` into the exectuable, `simv`. For synthesis we synthesize
+`SOURCES` to `SYNTH_FILES` and then compile `SYNTH_FILES` and
+`TESTBENCH` into the executable, `syn_simv`.
 
 To use the Makefile, type `make my_target` at the shell when in a
 directory with a `Makefile` file. Here is the reference table of all
