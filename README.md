@@ -20,17 +20,19 @@ options for accessing the environment:
 
 Lab computers are the simplest option - and don't require two-factor
 authentication (2FA). Go to any CAEN lab on North campus and open a
-computer:
+computer. (You can find CAEN computers at
+[this link](https://its.umich.edu/computing/computers-software/campus-computing-sites/computer-labs-map)
+by selecting CAEN Workstations on the left)
 
 - If your login screen is for Linux, you're done!  
-  Use your uniqname and password to login and access the Linux desktop,
+  Use your uniqname and password to log in and access the Linux desktop,
   then open a terminal with Ctrl+T or by right-clicking the desktop
   and selecting "Open Terminal"
 
 - Windows computers will require a few more steps:
 
-  - Most lab computers dual boot both Windows and Linux, so you can
-    often reboot straight into the Linux desktop:
+  - Most lab computers are dual boot, so you can often reboot straight
+    into the Linux desktop:
 
     Press Ctrl+Alt+Del at the Windows login screen and select restart,
     then use the arrow keys to choose Linux when the option to choose an
@@ -39,22 +41,22 @@ computer:
   - Or you can connect to a remote Linux desktop inside Windows by using
     CAEN VNC:
 
-    Login to Windows, then search for "CAEN VNC" in the "appsanywhere"
+    Log in to Windows, then search for "CAEN VNC" in the "appsanywhere"
     page that automatically opens. Click the green launch button, then
     the second big green launch button in the cloudpaging player window.
-    It will open a small window asking for your login. Enter it, then
-    login again to access the Linux desktop!
+    It will open a small window asking for your log in. Enter it, then
+    log in again to access the Linux desktop!
 
 #### [Remote login](https://caen.engin.umich.edu/connect/linux-login-service/)
 
 You can still log into the CAEN Linux environment if you're not on
 campus, however you will need to use two-factor authentication with duo
 every single time you access, which gets annoying. These tutorials will
-show you how to access either the desktop through VNC or the commandline
+show you how to access either the desktop through VNC or the command-line
 through SSH.
 
 - [To a Linux desktop via VNC](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=4999)
-- [To a command line via SSH](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=5002)
+- [To a command-line via SSH](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=5002)
   - And don't forget to setup an ssh config file (see below)
 
 #### [Using Visual Studio Code over SSH](https://code.visualstudio.com/docs/remote/ssh#_installation)
@@ -172,7 +174,7 @@ violations. When we're satisfied with the synthesis, we can compile the
 synthesized module with the original testbench to produce a new
 executable that we can debug again until it passes.
 
-### Using Makefiles in EECS 470
+#### Using the EECS 470 standard Makefile
 
 To manage this workflow, we use the *GNU Make* utility as a build
 automation tool. We specify targets with dependencies and set variables
