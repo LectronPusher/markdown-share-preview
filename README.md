@@ -215,7 +215,7 @@ targets from the EECS 470 standard Makefile:
 # make verdi     <- runs the Verdi GUI debugger for simulation
 # make syn_verdi <- runs the Verdi GUI debugger for synthesis
 
-# make clean     <- remove files from tesbtench runs and compilations (but not synthesized modules)
+# make clean     <- remove files from testbench runs and compilations (but not synthesized modules)
 # make nuke      <- remove all files created by the makefile
 # make clean_run_files <- remove per-run output files
 # make clean_exe       <- remove compiled executable files
