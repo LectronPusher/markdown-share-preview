@@ -141,9 +141,9 @@ Once you have shell access, clone your repos and get started!
 In EECS 470 we're generally executing one of three types of commands in
 CAEN:
 
-1. Compiling Verilog testbenches with simulated and synthesized modules
+1. Compiling verilog testbenches with simulated and synthesized modules
 2. Running the compiled module + testbench
-3. Debugging in Verdi, our Verilog debugging environment
+3. Debugging in Verdi, our verilog debugging environment
 
 #### Here's our general workflow:
 
