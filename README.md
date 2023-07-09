@@ -152,7 +152,7 @@ We start with a verilog testbench and module(s) it tests.
 We compile these under simulation to an exectuable file that runs
 the testbench and prints whether the module passes or fails. If it
 fails, we use Verdi or display statements to inspect the output and
-iterate either the testbench or the module until we're satisfied.
+iterate on either the testbench or the module until we're satisfied.
 
 Once the testbench and module work in simulation, we change our
 compilation step. We synthesize the verilog modules against actual
