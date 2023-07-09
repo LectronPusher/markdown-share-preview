@@ -107,19 +107,19 @@ quickly, here's what to remember:
 - Each line is a command with space separated arguments, use quotes for
   arguments that contain spaces  
   `grep EECS 470 Makefile` vs `grep "EECS 470" Makefile`
-- Press the up arrow to re-use previous commands
+- Press the up arrow to reuse previous commands
 - Press tab to auto-complete typed filenames (`grep 470 Makef<TAB>`)
 - Use `pwd` to print your working folder/directory, `cd dir` to change
   your directory, `mkdir` to make new directories, and `touch` to make
   new files
-- Output files raw with `cat`, View them with `less`:
+- Output files raw with `cat`, view them with `less`:
   `cat README.md` vs `less README.md`
 - Redirect command output to files with `>`:  
   `echo EECS 470 rules! > file.txt`; `cat file.txt`
 - Pipe the output of one command as the input to another with `|`:  
-  `echo EECS 370 was a lot of work | sed -e s/3/4/ -e s/wa/i/`
+  `echo "EECS 370 was a lot of work" | sed -e s/3/4/ -e s/wa/i/`
 - Press Ctrl+C to Cancel a running command  
-  Press Ctrl+\ to force-quit a running command if Ctrl+C doesn't work
+  Press Ctrl+\ to force quit a running command if Ctrl+C doesn't work
 - Finally, read manuals on any command with `man command`, and get quick
   help with `command --help`
 
@@ -143,7 +143,7 @@ CAEN:
 
 1. Compiling Verilog testbenches with simulated and synthesized modules
 2. Running the compiled module + testbench
-3. Debugging in Verdi, our verilog debugging environment
+3. Debugging in Verdi, our Verilog debugging environment
 
 #### Here's our general workflow:
 
