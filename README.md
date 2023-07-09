@@ -3,32 +3,33 @@
 This readme will be included in the first few labs/projects, and is a
 beginner's guide and quick reference for getting started in EECS 470.
 
-It starts with a guide to accessing the CAEN Linux environment,
-gives a quick refresher on using the terminal and shell, introduces
-GitHub and autograder usage in EECS 470, and ends by introducing our
-build tools and the EECS 470 standard Makefile.
+It starts with a guide to accessing the CAEN Linux environment, gives a
+quick refresher on using the terminal and shell, introduces GitHub and
+autograder usage in EECS 470, and ends by introducing our general build
+tool and Makefile workflow.
 
 ## Accessing the CAEN Linux Environment
 
 [CAEN's Linux environment](https://caen.engin.umich.edu/software/clse/)
 is our workspace for verilog programming in 470. It gives us access to
-the Synopsys build tools and the Verdi debugger and is the only
-location we can use these tools from. Luckily, there are many options
-for accessing the environment:
+the Synopsys build tools and the Verdi debugger and is the only location
+we can use these tools from. Luckily, there are many options for
+accessing the environment:
 
 #### [Lab computers!](https://caen.engin.umich.edu/software/clse/)
 
-Lab computers are the simplest way to access CAEN Linux - and they
-don't require two-factor authentication (2FA).
+Lab computers are the simplest way to access CAEN Linux - and they don't
+require two-factor authentication (2FA).
 
-Go to any CAEN lab (try searching at [this link](https://its.umich.edu/computing/computers-software/campus-computing-sites/computer-labs-map)
+Go to any CAEN lab (try searching at
+[this link](https://its.umich.edu/computing/computers-software/campus-computing-sites/computer-labs-map)
 by checking "CAEN Workstations") and open a computer:
 
 - If your login screen is for Linux, you're done!
-  
+
   Use your uniqname and password to log in and access the Linux desktop,
-  then open a terminal with Ctrl+T or by right-clicking the desktop
-  and selecting "Open Terminal"
+  then open a terminal with Ctrl+T or by right-clicking the desktop and
+  selecting "Open Terminal"
 
 - Windows computers will require a few more steps:
 
@@ -62,14 +63,14 @@ through SSH.
 
 #### [Visual Studio Code!](https://code.visualstudio.com/docs/remote/ssh#_installation)
 
-VS Code is a common editor and offers a great way to access projects
-in 470. You can use the Remote-SSH extension to access CAEN over SSH
-from a VS Code instance running on your local machine. If you follow the
+VS Code is a common editor and offers a great way to access projects in
+470. You can use the Remote-SSH extension to access CAEN over SSH from a
+VS Code instance running on your local machine. If you follow the
 [linked tutorial](https://code.visualstudio.com/docs/remote/ssh#_installation)
 above, CAEN is already ready for ssh with the hostname
 `login-course.caen.umich.edu` and your username will be your uniqname,
 so connect to the remote: `YOUR_UNIQNAME@login-course.caen.umich.edu`.
-Unfortunately this too requires 2FA on every login, but you can set
+Unfortunately this too requires 2FA on every login, but you can set up
 ControlPersist in your ssh config (see below) to speed up reconnecting.
 
 ### Configuring SSH
@@ -96,12 +97,13 @@ Host caen login-course.engin.umich.edu
 
 ## Using the Terminal and Shell
 
-Once you can access the CAEN Linux environemnt, you can open a
-terminal and run some shell commands. Open the terminal by pressing
-Ctrl+T or right-clicking the desktop and selecting "Open Terminal"
+Once you can access the CAEN Linux environemnt, you can open a terminal
+and run some shell commands. Open the terminal by pressing Ctrl+T or
+right-clicking the desktop and selecting "Open Terminal"
 
 We assume you have basic terminal and shell knowledge already, but very
 quickly, here's what to remember:
+
 - Each line is a command with space separated arguments, use quotes for
   arguments that contain spaces:  
   `grep EECS 470 Makefile` vs `grep "EECS 470" Makefile`
@@ -117,7 +119,7 @@ quickly, here's what to remember:
 - Pipe the output of one command as the input to another with `|`:  
   `echo "EECS 370 was a lot of work" | sed -e s/3/4/ -e s/wa/i/`
 - Press Ctrl+C to Cancel a running command  
-  Press Ctrl+\ to force Quit a running command if Ctrl+C doesn't work
+  Press Ctrl+\\ to force Quit a running command if Ctrl+C doesn't work
 - Finally, read manuals on any command with `man command`, and get quick
   help with `command --help`
 
@@ -135,25 +137,25 @@ Once you have shell access, clone your repos and get started!
 In EECS 470 we're generally executing one of three types of commands in
 CAEN:
 
-1. Compiling verilog testbenches with simulated and synthesized modules
-2. Running the compiled module + testbench
-3. Debugging in Verdi, our verilog debugging environment
+1.  Compiling verilog testbenches with simulated and synthesized modules
+2.  Running the compiled executable
+3.  Debugging in Verdi, our verilog debugging environment
 
 #### Here's our general workflow:
 
 We start with a verilog testbench and module(s) it tests.
 
-We compile these under simulation to an exectuable file that runs
-the testbench and prints whether the module passes or fails. If it
-fails, we use Verdi or display statements to inspect the output and
-iterate on either the testbench or the module until we're satisfied.
+We compile these under simulation to an exectuable file that runs the
+testbench and prints whether the module passes or fails. If it fails, we
+use Verdi or display statements to inspect the output and iterate on
+either the testbench or the module until we're satisfied.
 
 Once the testbench and module work in simulation, we change our
 compilation step. We synthesize the verilog modules against actual
 device cells representing structural hardware connections. We only
-synthesize the module, not the testbench, as the testbench may
-include features like *printing*, or *reading files* that don't
-exactly translate to raw silicon.
+synthesize the module, not the testbench, as the testbench may include
+features like *printing*, or *reading files* that don't exactly
+translate to raw silicon.
 
 In synthesized modules, we generally focus on timing rather than area,
 and use the **slack** metric: the clock period minus the longest signal
@@ -167,7 +169,7 @@ violations. When we're satisfied with the synthesis, we can compile the
 synthesized module with the original testbench to produce a new
 executable that we can debug again until it passes.
 
-## Using the EECS 470 standard Makefile
+### Using Makefiles in EECS 470
 
 To manage this workflow, we use *GNU Make* as a build automation tool.
 We specify targets with dependencies and set variables in the special
@@ -177,28 +179,31 @@ targets or dependencies if their source files are newer than the
 previous build.
 
 From the workflow above, we name our normal simulation executable
-`simv`, and our synthesis executable `syn_simv`. To build these, we
-need to specify our source and output files in these Make variables:
+`simv`, and our synthesis executable `syn_simv`. To build these, we need
+to specify our source and output files in these Make variables:
+
 - `TESTBENCH` `= and8_test.sv` Our verilog testbench for a module
   (`and8` in this case)
-- `SOURCES` `= and8.sv and4.sv` The source files for the modules in
-  the testbench
+- `SOURCES` `= and8.sv and4.sv` The source files for the modules in the
+  testbench
 - `SYNTH_FILES` `= and8.vg` The file(s) we'll use when compiling for
   synthesis
 
+For simulation we compile `simv` directly from `SOURCES` and
+`TESTBENCH`. For synthesis we first synthesize `SOURCES` to
+`SYNTH_FILES` and then compile `syn_simv` from `SYNTH_FILES` and
+`TESTBENCH`.
+
 We won't go over the specific build commands in detail, but our verilog
-compiler is `vcs`, which we run with many many arguments and our
+compiler is `vcs`, which we run with many many arguments, and our
 synthesizer is `dc_shell`, which we run with a synthesis script:
 `470synth.tcl`. The script reads environment variables for source files
 and other configuration and defines the constraints that set up our
-timing requirements. For simulation we compile `SOURCES` and
-`TESTBENCH` into the exectuable, `simv`. For synthesis we synthesize
-`SOURCES` to `SYNTH_FILES` and then compile `SYNTH_FILES` and
-`TESTBENCH` into the executable, `syn_simv`.
+timing requirements.
 
-To use the Makefile, type `make my_target` at the shell when in a
-directory with a `Makefile` file. Here is the reference table of all
-targets from the EECS 470 standard Makefile:
+To use the Makefile, run `make my_target` in the shell when in a
+directory with a "`Makefile`" file. Here is the reference table of all
+standard targets in EECS 470 makefiles:
 
 ```
 # make sim       <- execute the simulation testbench (simv)
@@ -218,4 +223,3 @@ targets from the EECS 470 standard Makefile:
 # make clean_exe       <- remove compiled executable files
 # make clean_synth     <- remove generated synthesis files
 ```
-
