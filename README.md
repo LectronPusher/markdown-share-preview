@@ -1,4 +1,4 @@
-# EECS 470 Early Labs/Projetcs
+# EECS 470 Early Labs/Projects
 
 This readme will be included in the first few labs/projects, and is a
 beginner's guide and quick reference for getting started in EECS 470.
