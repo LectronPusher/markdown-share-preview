@@ -79,7 +79,7 @@ probably use ssh to do so. Setting up an ssh config file can save you a
 lot of hassle over the semester. Below is a good default ssh config for
 CAEN, it lets you type `ssh caen` instead of
 `ssh YOUR_UNIQNAME@login-course.caen.umich.edu` and also keeps your ssh
-connection alive so you don't have to reconnect and re-do 2FA if you
+connection alive so you don't have to reconnect and redo 2FA if you
 connect multiple times in a row. You can use it by copying it to the
 `~/.ssh/config` file, or if you're using VS Code, search for "remote-ssh
 configuration" and add it there.
