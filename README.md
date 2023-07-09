@@ -16,7 +16,7 @@ us access to the Synopsys build tools and the Verdi debugger and is the
 only location we can use these tools from. Luckily, there are many
 options for accessing the environment:
 
-##### [Lab computers!](https://caen.engin.umich.edu/software/clse/)
+#### [Lab computers!](https://caen.engin.umich.edu/software/clse/)
 
 Lab computers are the simplest option - and don't require two-factor
 authentication (2FA). Go to any CAEN lab on North campus and open a
@@ -45,7 +45,7 @@ computer:
     It will open a small window asking for your login. Enter it, then
     login again to access the Linux desktop!
 
-##### [Remote login](https://caen.engin.umich.edu/connect/linux-login-service/)
+#### [Remote login](https://caen.engin.umich.edu/connect/linux-login-service/)
 
 You can still log into the CAEN Linux environment if you're not on
 campus, however you will need to use two-factor authentication with duo
@@ -57,7 +57,7 @@ through SSH.
 - [To a command line via SSH](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=5002)
   - And don't forget to setup an ssh config file (see below)
 
-##### [Using Visual Studio Code over SSH](https://code.visualstudio.com/docs/remote/ssh#_installation)
+#### [Using Visual Studio Code over SSH](https://code.visualstudio.com/docs/remote/ssh#_installation)
 
 Many of you are already programming in VS Code, and it offers a great
 way to access projects in CAEN Linux. You can use the Remote-SSH
@@ -71,7 +71,7 @@ Unfortunately this too requires two-factor authentication on every
 login, but you can set up ControlPersist in your ssh config (see below)
 to speed up re-connecting.
 
-##### Configuring SSH
+### Configuring SSH
 
 Most students will eventually want to access CAEN remotely, and will
 probably use ssh to do so. Setting up an ssh config file can save you a
