@@ -45,21 +45,21 @@ by checking "CAEN Workstations") and open a computer:
 
     Log in to Windows, then search for "CAEN VNC" in the "appsanywhere"
     page that automatically opens. Click the green launch button, then
-    the second big green launch button in the cloudpaging player window.
-    It will open a small window asking for your log in. Enter it, then
-    log in again to access the Linux desktop!
+    the second big green launch button in the 'Cloudpaging Player'
+    window. It will open a small window asking for your login. Enter
+    it, then log in again to access the Linux desktop!
 
 #### [Remote login!](https://caen.engin.umich.edu/connect/linux-login-service/)
 
 You can still log into the CAEN Linux environment if you're not on
 campus, however you will need to use two-factor authentication with Duo
-every single time you access, which gets annoying. These tutorials will
-show you how to access either the desktop through VNC or the terminal
-through SSH.
+every single time you access the environment, which gets annoying. These
+tutorials will show you how to access either the desktop through VNC or
+the terminal through SSH.
 
 - [Log in to a desktop via VNC](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=4999)
 - [Log in to a terminal via SSH](https://teamdynamix.umich.edu/TDClient/76/Portal/KB/ArticleDet?ID=5002)
-  - And don't forget to set up an ssh config file (see below)
+  - And don't forget to set up an SSH config file (see below)
 
 #### [Visual Studio Code!](https://code.visualstudio.com/docs/remote/ssh#_installation)
 
@@ -67,17 +67,17 @@ VS Code is a common editor and offers a great way to access projects in
 470. You can use the Remote-SSH extension to access CAEN over SSH from a
 VS Code instance running on your local machine. If you follow the
 [linked tutorial](https://code.visualstudio.com/docs/remote/ssh#_installation)
-above, CAEN is already ready for ssh with the hostname
+above, CAEN is already ready for SSH with the hostname
 `login-course.caen.umich.edu` and your username will be your uniqname,
 so connect to the remote: `YOUR_UNIQNAME@login-course.caen.umich.edu`.
 Unfortunately this too requires 2FA on every login, but you can set up
-ControlPersist in your ssh config (see below) to speed up reconnecting.
+ControlPersist in your SSH config (see below) to speed up reconnecting.
 
 ### Configuring SSH
 
 Most students will eventually want to access CAEN remotely, and will
-probably use ssh to do so. Setting up an ssh config file can save you a
-lot of hassle over the semester. Below is a good default ssh config for
+probably use SSH to do so. Setting up an SSH config file can save you a
+lot of hassle over the semester. Below is a good default SSH config for
 CAEN, it lets you type `ssh caen` instead of
 `ssh YOUR_UNIQNAME@login-course.caen.umich.edu` and also keeps your ssh
 connection alive so you don't have to reconnect and redo 2FA if you
@@ -106,7 +106,7 @@ quickly, here's what to remember:
 
 - Each line is a command with space separated arguments, use quotes for
   arguments that contain spaces:  
-  `grep EECS 470 Makefile` vs `grep "EECS 470" Makefile`
+  `grep "EECS 470" Makefile` over `grep EECS 470 Makefile`
 - Press the up arrow to reuse previous commands
 - Press tab to auto-complete typed filenames (`grep 470 Makef<TAB>`)
 - Use `pwd` to print your working folder/directory, `cd new_dir` to
@@ -118,8 +118,8 @@ quickly, here's what to remember:
   `echo EECS 470 rules! > file.txt`; `cat file.txt`
 - Pipe the output of one command as the input to another with `|`:  
   `echo "EECS 370 was a lot of work" | sed -e s/3/4/ -e s/wa/i/`
-- Press Ctrl+C to Cancel a running command  
-  Press Ctrl+\\ to force Quit a running command if Ctrl+C doesn't work
+- Press Ctrl+C to *cancel* a running command  
+  Press Ctrl+\\ to force *quit* a running command if Ctrl+C doesn't work
 - Finally, read manuals on any command with `man command`, and get quick
   help with `command --help`
 
